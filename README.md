@@ -47,11 +47,6 @@ python main.py
 
 ## Visualizations
 There are a total of three visuals, the trajectories, red are predicted positions and blue the actual positions of the block stored in `{traj_save_addr}`, the tensorboard visualizations of the train and test loss plots in `$HOME/train/TensorboardVisuals/`, and finally Average Trajectory MSE losses stored in the current directory (during code execution).
-To run the tensorboard plots, simple run in terminal
-```bash
-cd $HOME/train/
-tensorboard --logdir=TensorboardVisuals/ --bind_all
-```
 
 <p align="middle">
 	<img src="/Images/7423_1.png" width=400 />
@@ -62,6 +57,12 @@ tensorboard --logdir=TensorboardVisuals/ --bind_all
 	<b>Figure 1: </b>
 	Trajectories. Red trajectory is the model prediction, and the blue trajectories are ground truths.
 </p>
+
+To run the tensorboard plots, simple run in terminal
+```bash
+cd $HOME/train/
+tensorboard --logdir=TensorboardVisuals/ --bind_all
+```
 
 To visualize the model,
 ```bash
@@ -78,6 +79,6 @@ The trajectory error plots can be found in the `$HOME/train/` folder.
 </p> 
 
 <p align="Middle"> 
-	<b>Figure 1: </b>
+	<b>Figure 2: </b>
 	The Absolute error is the absolute difference between the target/labels and model predictions. Index variable is the index on of a point in a trajectory.
 </p>
