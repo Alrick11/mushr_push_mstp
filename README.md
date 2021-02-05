@@ -63,7 +63,7 @@ The trajectory error plots can be found in the `$HOME/train/` folder. They consi
 
 Absolute error plots.
 <p float="left">
-	<img src="/Images/x.png" width=400 alt />
+	<img src="/Images/x.png" width=400 alt="Something" />
 	<em>"Absolute error in x" <em />
 	<img src="/Images/y.png" width=400 title="Absolute error in y" />
 	<img src="/Images/theta.png" width=400 title="Absolute error in theta" />
