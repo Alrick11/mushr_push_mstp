@@ -20,7 +20,7 @@ python collect_data.py --cpu_count 3
 This command will generate train.csv.gz, test_seen.csv.gz and test_unseen.csv.gz in `$HOME/datacol/json_files/`.
 
 ## Training the Model
-Note: You might want to train the model on a server since the dataloader consumer a lot of memory, which might hang your laptop/computer, and it is preferred to have a GPU (also I haven't tested the code on cpu, but it should work). We first need to set the `data_dir`, `home_dir`, `traj_save_addr`, `model_path` and `train` variables in `$HOME/train/main.py`. You can set these values by passing them as arguments or change it in the code itself.
+Note: You might want to train the model on a server since the dataloader consumes a lot of memory, which might hang your laptop/computer, and it is preferred to have a GPU (also I haven't tested the code on cpu, but it should work). We first need to set the `data_dir`, `home_dir`, `traj_save_addr`, `model_path` and `train` variables in `$HOME/train/main.py`. You can set these values by passing them as arguments or change it in the code itself.
 
 `data_dir` is the parent folder of data stored (`$HOME/datacol/json_files`).
 
