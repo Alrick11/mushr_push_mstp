@@ -68,3 +68,6 @@ Absolute error plots.
 	<img src="/Images/y.png" width=400 title="Absolute error in y" />
 	<img src="/Images/theta.png" width=400 title="Absolute error in theta" />
 </p> 
+
+
+![x error]("/Images/x.png") ![y error]("/Images/y.png") ![theta error]("/Images/theta.png")
