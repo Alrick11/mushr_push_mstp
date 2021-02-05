@@ -62,7 +62,7 @@ python -c "import netron; netron.start('model.onnx');"
 The error plots can be found in the `$HOME/train/` folder. They consist of 
 absolute errors in x,y and rotation about z coordinates (theta).
 
-<p float="left">
+<p float="left" align="middle">
 	<img src="/Images/x.png" width=350 title="Absolute error in x" />
 	<img src="/Images/y.png" width=350 title="Absolute error in y" />
 	<img src="/Images/theta.png" width=350 title="Absolute error in theta" />
