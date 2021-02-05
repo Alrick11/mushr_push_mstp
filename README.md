@@ -64,6 +64,16 @@ cd $HOME/train/
 tensorboard --logdir=TensorboardVisuals/ --bind_all
 ```
 
+<p align="middle">
+	<img src="/Images/train_plot.png" width=400 />
+	<img src="/Images/test_plot.png" width=400 />
+</p>
+
+<p align="middle">
+	<b>Figure 2: </b>
+	Training and testing plots of the lstm model with sequence length 1000.
+</p>
+
 To visualize the model,
 ```bash
 cd $HOME/train/
@@ -79,6 +89,6 @@ The trajectory error plots can be found in the `$HOME/train/` folder.
 </p> 
 
 <p align="Middle"> 
-	<b>Figure 2: </b>
+	<b>Figure 3: </b>
 	The Absolute error is the absolute difference between the target/labels and model predictions. Index variable is the index on of a point in a trajectory.
 </p>
