@@ -126,8 +126,8 @@ def Visualize_traj(traj, hp, prefix=''):
         
     plt_name = "%s_%d"%(len(x), freq[len(x)])
     
-    plt.xlim(-5,5)
-    plt.ylim(-5,5)
+    plt.xlim(-15,15)
+    plt.ylim(-15,15)
     plt.plot(torch.tensor(x).numpy(), torch.tensor(y).numpy(), 's', markersize=5,\
              markeredgewidth=1, markeredgecolor='r', markerfacecolor='None', alpha=0.8, \
                  label="predictions Len: %d"%(len(x)))
@@ -279,7 +279,7 @@ def _split_into_Traj(t, traj_state, hp: dict):
                     if temp!=[]:
                         traj_x.append([x[0].item() for x in temp])
                         traj_y.append([x[1].item() for x in temp])
-                        traj_theta.append([x[2].item() if x[2].item()<math.pi else math.pi - x[2].item() for x in temp])
+                        traj_theta.append([x[2].item() for x in temp])
                         
                     temp=[]
                     temp.append(data[j,:])
@@ -307,6 +307,12 @@ def get_metrics(log_path, model_name=''):
     
     traj_x, traj_y, traj_theta = x['trajectories_x'], x['trajectories_y'], x['trajectories_theta']
     
+    #Go over thetaas and rescale them
+    for k in range(len(traj_theta)):
+        for i in range(len(traj_theta[k])):
+            while abs(traj_theta[k][i])>math.pi:
+                traj_theta[k][i] = abs(2*math.pi - abs(traj_theta[k][i]))
+    
     #Get averages over all trajectories and plot them
     avgs=[]
     for traj_mse, name, label in zip([traj_x, traj_y, traj_theta],\
@@ -314,6 +320,7 @@ def get_metrics(log_path, model_name=''):
                                       'AbsoluteError_%s_y'%(model_name), 
                                       'AbsoluteError_%s_theta'%(model_name)],
                                      ['x', 'y', 'theta']):
+
         index=0
         flag=1
         avg_traj_mse=[]
@@ -338,7 +345,6 @@ def get_metrics(log_path, model_name=''):
         # print ("Before averaging length: ", len(avg_traj_mse))
         # avg_traj_mse = [ sum(avg_traj_mse[i:i+avg_n])/len(avg_traj_mse[i:i+avg_n]) for i in range(0,len(avg_traj_mse), avg_n) ]
         # print ("Changed len: ", len(avg_traj_mse), avg_n)
-        
         data = DataFrame({'Index': indices, \
                         'Absolute Error': avg_traj_mse[:]})
         

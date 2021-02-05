@@ -42,8 +42,6 @@ def Generate_metrics(vis_traj=False, **hp):
         writer=None
         
         #Run test
-        #Clear Trajectory addr
-        os.system("rm -rf %s/*"%(hp['traj_save_addr']))
         
         #Running normal testing
         avg_loss_ts_lstm, loss_ts_lstm, traj_state_ts_lstm, preds_ts_lstm = \
@@ -72,10 +70,10 @@ def Generate_metrics(vis_traj=False, **hp):
         utils.write_trajs([traj_x, traj_y, traj_theta], 'log_lstm_ms.json')
         
         #SR
-        traj_x, traj_y, traj_theta = utils._split_into_Traj(loss_ts_lstm, traj_state_ts_lstm, hp)
+        traj_x, traj_y, traj_theta = utils._split_into_Traj(loss_ts_sr, traj_state_ts_sr, hp)
         utils.write_trajs([traj_x, traj_y, traj_theta], 'log_sr_ts.json')
         
-        traj_x, traj_y, traj_theta = utils._split_into_Traj(loss_ms_lstm, traj_state_ms_lstm, hp)
+        traj_x, traj_y, traj_theta = utils._split_into_Traj(loss_ms_sr, traj_state_ms_sr, hp)
         utils.write_trajs([traj_x, traj_y, traj_theta], 'log_sr_ms.json')
         
         #Print Average metrics

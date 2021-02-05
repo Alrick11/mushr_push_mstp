@@ -300,9 +300,6 @@ def train(train_loader, test_seen_loader, test_unseen_loader, **hp):
     #Finally evaluate on unseen tests
     #Visualize only multi-step trajectories. Can visualize only one at a time.
     #Since they are being saved at the same location with the same name.
-    #Clear Trajectory addr
-    os.system("rm -rf %s/*"%(hp['traj_save_addr']))
-    
     avg_loss_ts, loss_ts, traj_state_ts, preds_ts = \
         evaluate(writer, model, test_seen_loader, device, hp, \
                  write_table=False, vis_traj=True, prefix='ts')

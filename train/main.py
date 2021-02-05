@@ -62,6 +62,9 @@ if __name__=="__main__":
     args.test_unseen_file=os.path.join(args.data_dir, 'test_unseen_f.csv.gz')
     args.writer_loc=os.path.join(args.home_dir,'TensorboardVisuals')
     
+    #Clear Trajectory addr
+    os.system("rm -rf %s/*"%(args.traj_save_addr))
+    
     if not os.path.exists(args.train_file) and not os.path.exists(args.test_seen_file) and not os.path.exists(args.test_unseen_file):
         print ("Path does not exist")
         exit(0)
