@@ -59,11 +59,15 @@ cd $HOME/train/
 python -c "import netron; netron.start('model.onnx');"
 ```
 
-The trajectory error plots can be found in the `$HOME/train/` folder. They consist of absolute errors in x,y and rotation about z coordinates (theta) per trajectory. The index variable in the x-axis is the index of point in the trajectory.
+The trajectory error plots can be found in the `$HOME/train/` folder.
 
-Absolute error plots.
 <p align="middle">
 	<img src="/Images/x.png" width=400 title="Absolute error in x" />
 	<img src="/Images/y.png" width=400 title="Absolute error in y" />
 	<img src="/Images/theta.png" width=400 title="Absolute error in theta" />
 </p> 
+
+<p align="Middle"> 
+	<b>Figure 1: </b>
+	The Absolute error is the absolute difference between the target/labels and model predictions. Index variable is the index on of a point in a trajectory.
+</p>
