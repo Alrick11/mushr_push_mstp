@@ -1,0 +1,18 @@
+model_path: /models/block.xml #Path of xml file
+record_video: False #True or False
+render_every_frame: False
+video_save_path: tmp_{}.mp4
+fps: 26
+headless: True
+mu: 0
+sigma: 0.1
+goal_position_threshold: 1
+goal_rotation_threshold: 1000
+num_trials: 3
+num_runs: 3
+rel_car_block_quat: True
+data_collection: True
+dcol_max_dist_threshold: 5
+atomic_mode: True
+goal_max_x: 5.0
+goal_max_y: 5.0

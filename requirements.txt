@@ -1,0 +1,14 @@
+
+#Requirements text file for conda environment.
+numpy==1.19.1
+torch==1.6.0
+scikit-learn==0.23.2
+matplotlib==3.2.2
+compress-json==1.0.4
+tqdm==4.48.2
+tensorboardX==2.1
+tensorboard==2.2.1
+PyYAML==5.3.1
+pandas==1.1.4
+netron==4.7.4
+mujoco-py<2.1,>=2.0
