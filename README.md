@@ -62,9 +62,8 @@ python -c "import netron; netron.start('model.onnx');"
 The trajectory error plots can be found in the `$HOME/train/` folder. They consist of absolute errors in x,y and rotation about z coordinates (theta) per trajectory. The index variable in the x-axis is the index of point in the trajectory.
 
 Absolute error plots.
-<p float="left">
-	<img src="/Images/x.png" width=400 alt="Something" />
-	<em>"Absolute error in x" <em />
+<p float="left" align="middle">
+	<img src="/Images/x.png" width=400 title="Absolute error in x" />
 	<img src="/Images/y.png" width=400 title="Absolute error in y" />
 	<img src="/Images/theta.png" width=400 title="Absolute error in theta" />
 </p> 
