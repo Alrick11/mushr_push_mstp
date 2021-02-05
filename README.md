@@ -53,6 +53,16 @@ cd $HOME/train/
 tensorboard --logdir=TensorboardVisuals/ --bind_all
 ```
 
+<p align="middle">
+	<img src="/Images/7423_1.png" width=400 />
+	<img src="/Images/8336_1.png" width=400 />
+</p>
+
+<p align="middle">
+	<b>Figure 1: </b>
+	Trajectories. Red trajectory is the model prediction, and the blue trajectories are ground truths.
+</p>
+
 To visualize the model,
 ```bash
 cd $HOME/train/
