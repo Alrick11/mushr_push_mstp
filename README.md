@@ -65,8 +65,8 @@ tensorboard --logdir=TensorboardVisuals/ --bind_all
 ```
 
 <p align="middle">
-	<img src="/Images/train_plot.png" width=400 />
-	<img src="/Images/test_plot.png" width=400 />
+	<img src="/Images/train_plot.png" width=350 />
+	<img src="/Images/test_plot.png" width=350 />
 </p>
 
 <p align="middle">
