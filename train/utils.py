@@ -55,6 +55,7 @@ def Visualize_traj(traj, hp, prefix=''):
     if not os.path.exists(os.path.join(save_addr, prefix)):
         os.mkdir(os.path.join(save_addr, prefix))
     
+    markersize, markeredgewidth = 0.5, 1
     x,y,label_x,label_y=[],[],[],[]
     freq = defaultdict()
     for i in range(hp['batch_size']):
@@ -91,10 +92,10 @@ def Visualize_traj(traj, hp, prefix=''):
                         fig=plt.figure()
                         plt.xlim(-15,15)
                         plt.ylim(-15,15)
-                        plt.plot(torch.tensor(x).numpy(), torch.tensor(y).numpy(), 's', markersize=5,\
-                                 markeredgewidth=1, markeredgecolor='r', markerfacecolor='None', alpha=0.8, label="predictions Len: %d"%(len(x)))
-                        plt.plot(torch.tensor(label_x).numpy(), torch.tensor(label_y).numpy(), 's', markersize=5,\
-                                 markeredgewidth=1, markeredgecolor='b', alpha=0.1, label="targets")
+                        plt.plot(torch.tensor(x).numpy(), torch.tensor(y).numpy(), 's', markersize=markersize,\
+                                 markeredgewidth=markeredgewidth, markeredgecolor='r', markerfacecolor='None', alpha=0.8, label="predictions Len: %d"%(len(x)))
+                        plt.plot(torch.tensor(label_x).numpy(), torch.tensor(label_y).numpy(), 's', markersize=markersize,\
+                                 markeredgewidth=markeredgewidth, markeredgecolor='b', alpha=0.1, label="targets")
                         plt.xlabel('X')
                         plt.ylabel('Y')
                         plt.axes().set_aspect('equal')
@@ -128,11 +129,11 @@ def Visualize_traj(traj, hp, prefix=''):
     
     plt.xlim(-15,15)
     plt.ylim(-15,15)
-    plt.plot(torch.tensor(x).numpy(), torch.tensor(y).numpy(), 's', markersize=5,\
-             markeredgewidth=1, markeredgecolor='r', markerfacecolor='None', alpha=0.8, \
+    plt.plot(torch.tensor(x).numpy(), torch.tensor(y).numpy(), 's', markersize=markersize,\
+             markeredgewidth=markeredgewidth, markeredgecolor='r', markerfacecolor='None', alpha=0.8, \
                  label="predictions Len: %d"%(len(x)))
-    plt.plot(torch.tensor(label_x).numpy(), torch.tensor(label_y).numpy(), 's', markersize=5,\
-             markeredgewidth=1, markeredgecolor='b', alpha=0.1, label="targets")
+    plt.plot(torch.tensor(label_x).numpy(), torch.tensor(label_y).numpy(), 's', markersize=markersize,\
+             markeredgewidth=markeredgewidth, markeredgecolor='b', alpha=0.1, label="targets")
     plt.savefig("%s/%s/%s.png"%(save_addr, prefix, plt_name))
     
     plt.close()
@@ -175,8 +176,10 @@ def _plot_sns(data, name, label=''):
     """
     sns.set_style('darkgrid')
     fig = plt.figure()
-    sns_plot = sns.lineplot(data=data, x='Index', y='Absolute Error', \
-                            legend='brief', label=label)
+    # sns_plot = sns.lineplot(data=data, x='Index', y='Absolute Error', \
+    #                         legend='brief', label=label)
+    sns_plot = sns.lineplot(data=data, label=label)
+    
     plt.savefig(name)
     plt.close()
 
@@ -321,10 +324,10 @@ def get_metrics(log_path, model_name=''):
                                       'AbsoluteError_%s_theta'%(model_name)],
                                      ['x', 'y', 'theta']):
 
-        index=0
-        flag=1
-        avg_traj_mse=[]
-        indices=[]
+        index, flag=0, 1
+        avg_traj_mse, indices=[],[]
+        counts={}
+        
         while flag!=0:
             flag, count, val=0,0,0
             for traj in traj_mse:
@@ -339,14 +342,17 @@ def get_metrics(log_path, model_name=''):
                 
             if flag:
                 # avg_traj_mse.append(val**0.5/count)
+                counts[index]=count
                 index+=1
         
         #Group avg_traj and then take their averages...
         # print ("Before averaging length: ", len(avg_traj_mse))
         # avg_traj_mse = [ sum(avg_traj_mse[i:i+avg_n])/len(avg_traj_mse[i:i+avg_n]) for i in range(0,len(avg_traj_mse), avg_n) ]
         # print ("Changed len: ", len(avg_traj_mse), avg_n)
+        total_counts = [counts[i] for i in indices]
+        
         data = DataFrame({'Index': indices, \
-                        'Absolute Error': avg_traj_mse[:]})
+                        'Absolute Error': avg_traj_mse[:], 'Count': total_counts})
         
         _plot_sns(data, name, label=label)
         # _plot_data(None, np.array(avg_traj_mse), name, l=label)
