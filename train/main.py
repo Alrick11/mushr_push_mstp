@@ -58,8 +58,8 @@ if __name__=="__main__":
     args=parser.parse_args()
     
     args.train_file = os.path.join(args.data_dir,'train_f.csv.gz')
-    args.test_seen_file=os.path.join(args.data_dir, 'test_seen_f.csv.gz')
-    args.test_unseen_file=os.path.join(args.data_dir, 'test_unseen_f.csv.gz')
+    args.test_seen_file=os.path.join(args.data_dir, 'test_seen_cs.csv.gz')
+    args.test_unseen_file=os.path.join(args.data_dir, 'test_unseen_cs.csv.gz')
     args.writer_loc=os.path.join(args.home_dir,'TensorboardVisuals')
     
     #Clear Trajectory addr
@@ -77,5 +77,5 @@ if __name__=="__main__":
         train(train_loader, test_seen_loader, test_unseen_loader, **vars(args))
         
     else:
-        Generate_metrics(is_traj=False, **vars(args))
+        Generate_metrics(vis_traj=False, **vars(args))
         

@@ -17,7 +17,7 @@ import ast
 from tqdm.auto import tqdm
 from tensorboardX import SummaryWriter
 import random
-sys.path.append('/home/alrick/github_collection/mushr_push_sim/src')
+sys.path.append('/home/alrick/github_collection/mushr_push_mstp/src')
 import utils
 from scipy.spatial.transform import Rotation
 
@@ -442,10 +442,10 @@ def collect_data(sim, controller, runs=None, trials=None, time_limit=None, save_
         x_len_tracker=0
         
         x = Create_empty_x()
+        plt_count=0
         
         while not sim.done:
             sim.setup_next_run()
-            plt_count=0
 
             while not sim.run_done: 
                 sim.setup_next_trial()

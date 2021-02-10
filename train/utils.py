@@ -178,7 +178,12 @@ def _plot_sns(data, name, label=''):
     fig = plt.figure()
     # sns_plot = sns.lineplot(data=data, x='Index', y='Absolute Error', \
     #                         legend='brief', label=label)
-    sns_plot = sns.lineplot(data=data, label=label)
+    sns.lineplot(data=data, x='Index', y='Absolute Error', \
+                            legend='brief', label=label, color='b')
+    ax2 = plt.twinx()
+    
+    sns.lineplot(data=data, x='Index', y='Number of trajectories', legend='brief', \
+                 label='No. of Traj', ax=ax2, color='g')
     
     plt.savefig(name)
     plt.close()
@@ -352,11 +357,12 @@ def get_metrics(log_path, model_name=''):
         total_counts = [counts[i] for i in indices]
         
         data = DataFrame({'Index': indices, \
-                        'Absolute Error': avg_traj_mse[:], 'Count': total_counts})
+                        'Absolute Error': avg_traj_mse[:], 'Number of trajectories': total_counts})
         
         _plot_sns(data, name, label=label)
         # _plot_data(None, np.array(avg_traj_mse), name, l=label)
         avgs.append(avg_traj_mse[:])
+        print ("\nDone plotting %s\n"%(name))
         # _sns_plot_data(np.concatenate((np.arange(len(avg_traj_mse)), np.array(avg_traj_mse))), name)
 
     sns.set_style('darkgrid')
