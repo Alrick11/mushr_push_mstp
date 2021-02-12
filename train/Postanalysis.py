@@ -90,6 +90,6 @@ def Generate_metrics(vis_traj=False, **hp):
     print ("Test Multi_step trajectory MSE LSTM:\n")
     utils.get_metrics('log_lstm_ms.json', model_name='lstm_ms')
     
-    print ("Testing Multi_step trajectory MSE Simple Regression:\n")
-    utils.get_metrics('log_sr_ms.json', model_name='sr_ms')
+    # print ("Testing Multi_step trajectory MSE Simple Regression:\n")
+    # utils.get_metrics('log_sr_ms.json', model_name='sr_ms')
     

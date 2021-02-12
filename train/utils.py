@@ -176,14 +176,48 @@ def _plot_sns(data, name, label=''):
     """
     sns.set_style('darkgrid')
     fig = plt.figure()
-    # sns_plot = sns.lineplot(data=data, x='Index', y='Absolute Error', \
-    #                         legend='brief', label=label)
+    sns_plot = sns.lineplot(data=data, x='Index', y='Absolute Error', \
+                            legend='brief', label=label)
     sns.lineplot(data=data, x='Index', y='Absolute Error', \
                             legend='brief', label=label, color='b')
+    
+    #Plotting linefit
+    from collections import Counter
+    
+    d = {}
+    
+    for i, val in zip(data['Index'].tolist(), data['Absolute Error'].tolist()):
+        if i in d:
+            d[i].append(val)
+        else:
+            d[i]=[val]
+    
+    for k, v in d.items():
+        d[k] = sum(v)/len(v)
+    
+    d = sorted(d.items())
+    
+    indices, mean = [x[0] for x in d], [x[1] for x in d]
+    
+    print (max(mean), min(mean), sum(mean), sum([x>1 for x in mean]), \
+           sum([x>10 for x in mean]), len(mean))
+        
+    # print ("Indices: \n", len(indices))
+    # print ("\nMean:\n", len(mean), sum(mean))
+    
+    z = np.polyfit(indices, mean, 1)
+    # print ('z:\n', z)
+    p = np.poly1d(z)
+    # print ("p indices: \n\n", p(indices))
+    
+    plt.plot(indices, p(indices), c='r', ls=':')
+    
+    #Plotting counts
     ax2 = plt.twinx()
     
     sns.lineplot(data=data, x='Index', y='Number of trajectories', legend='brief', \
-                 label='No. of Traj', ax=ax2, color='g')
+                  label='No. of Traj', ax=ax2, color='g')
+        
     
     plt.savefig(name)
     plt.close()

@@ -58,8 +58,8 @@ if __name__=="__main__":
     args=parser.parse_args()
     
     args.train_file = os.path.join(args.data_dir,'train_f.csv.gz')
-    args.test_seen_file=os.path.join(args.data_dir, 'test_seen_cs.csv.gz')
-    args.test_unseen_file=os.path.join(args.data_dir, 'test_unseen_cs.csv.gz')
+    args.test_seen_file=os.path.join(args.data_dir, 'test_seen_st.csv.gz')
+    args.test_unseen_file=os.path.join(args.data_dir, 'test_unseen_st.csv.gz')
     args.writer_loc=os.path.join(args.home_dir,'TensorboardVisuals')
     
     #Clear Trajectory addr
